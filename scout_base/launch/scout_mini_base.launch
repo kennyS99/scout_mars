@@ -17,6 +17,7 @@
     <arg name="pub_tf" default="$(arg pub_tf)" />
 
     <node name="scout_base_node" pkg="scout_base" type="scout_base_node" output="screen">
+     <!-- <node name="test" pkg="scout_base" type="test" output="screen"> -->
         <param name="is_scout_mini" type="bool" value="$(arg is_scout_mini)" />
         <param name="is_scout_omni" type="bool" value="$(arg is_scout_omni)" />
         <param name="port_name" type="string" value="$(arg port_name)" />

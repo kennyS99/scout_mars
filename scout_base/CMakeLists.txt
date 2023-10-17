@@ -47,6 +47,8 @@ add_dependencies(scout_messenger ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 add_executable(scout_base_node src/scout_base_node.cpp)
 target_link_libraries(scout_base_node scout_messenger ${catkin_LIBRARIES})
 
+add_executable(test src/test.cpp)
+target_link_libraries(test scout_messenger ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############

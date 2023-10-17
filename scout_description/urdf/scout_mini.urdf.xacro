@@ -10,6 +10,9 @@
     <!-- Variables -->
     <xacro:property name="M_PI" value="3.14159"/>
 
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
     <!-- Vehicle Geometries -->
     <xacro:property name="base_x_size" value="0.6200000" />
     <xacro:property name="base_y_size" value="0.585000" />
@@ -27,7 +30,7 @@
         <visual>
             <origin
                     xyz="0 0 0"
-                    rpy="1.5707 0 -1.5707" />
+                    rpy="${pi/2} 0 -${pi/2}" />
             <geometry>
                 <mesh filename="package://scout_description/meshes/scout_mini_base_link.dae" />
             </geometry>
@@ -35,7 +38,7 @@
         <collision>
             <origin
                     xyz="0 0 0"
-                    rpy="1.5707 0 -1.5707" />
+                    rpy="${pi/2} 0 -${pi/2}" />
           <geometry>
             <mesh
               filename="package://scout_description/meshes/scout_mini_base_link.dae" />
@@ -55,6 +58,24 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="inertial_link" />
+    </joint>
+
+<!-- Outer S1 -->
+    <link name="ousterS1">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/> <!-- Adjust this to set the position and orientation -->
+            <geometry>
+            <mesh filename="package://scout_description/meshes/mid-360-asm.stl" scale="1 1 1"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+    </link>
+
+    <!-- Joint connecting RPLIDAR to a part of the robot, e.g., base_link -->
+    <joint name="ousterS1_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="ousterS1"/>
+        <origin xyz="0.0  0.0  0.3" rpy="0 0 0"/> <!-- Change this to adjust the position -->
     </joint>
 
     <!-- Scout wheel macros -->

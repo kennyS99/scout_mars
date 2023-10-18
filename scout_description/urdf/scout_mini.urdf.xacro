@@ -80,7 +80,7 @@
     </joint>
 
 <!-- Outer S1 -->
-    <link name="ousterS1">
+    <link name="os_sensor">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/> <!-- Adjust this to set the position and orientation -->
             <geometry>

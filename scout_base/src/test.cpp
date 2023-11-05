@@ -145,7 +145,8 @@
 //   return 0;
 // }
 #include <ros/ros.h>
-#include <geometry_msgs/Twist.h>
+// #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/TwistStamped.h>
 #include <nav_msgs/Odometry.h>
 #include "scout_msgs/ScoutLightCmd.h"
 double pose_x;
@@ -168,7 +169,7 @@ int main(int argc, char **argv)
     ros::Subscriber sub = nh.subscribe<nav_msgs::Odometry>(
         "/odom", 10, Odometry_Callback);
 
-    ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
+    ros::Publisher pub = nh.advertise<geometry_msgs::TwistStamped>("/cmd_vel", 10);
 
     light_cmd.enable_cmd_light_control = 1;
 
@@ -178,19 +179,19 @@ int main(int argc, char **argv)
 
     while (ros::ok())
     {
-        geometry_msgs::Twist msg;
+        geometry_msgs::TwistStamped msg;
         pose_x = odom_pose.pose.pose.position.x;
         pose_y = odom_pose.pose.pose.position.y;
         // Set your velocities here
 
         if (pose_x <= 3)
         {
-            msg.linear.x = 0.5;
+            msg.twist.linear.x = 0.5;
         }else
         {
-            msg.linear.x = 0.0;
+            msg.twist.linear.x = 0.0;
         }
-
+        //msg.twist.linear.x = 0.5;
         
           // example linear velocity
         //msg.angular.z = 0.5; // example angular velocity

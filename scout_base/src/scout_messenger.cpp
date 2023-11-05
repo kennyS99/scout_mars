@@ -38,19 +38,20 @@ namespace westonrobot
   }
 
   void ScoutROSMessenger::TwistCmdCallback(
-      const geometry_msgs::Twist::ConstPtr &msg)
+      const geometry_msgs::TwistStamped::ConstPtr &msg)
   {
     if (!simulated_robot_)
     {
       if(is_scout_omni)
-        dynamic_cast<ScoutMiniOmniRobot*>(scout_)->SetMotionCommand(msg->linear.x, msg->angular.z, msg->linear.y);
+        dynamic_cast<ScoutMiniOmniRobot*>(scout_)->SetMotionCommand(msg->twist.linear.x, msg->twist.angular.z, msg->twist.linear.y);
       else
-        scout_->SetMotionCommand(msg->linear.x, msg->angular.z);
+        scout_->SetMotionCommand(msg->twist.linear.x, msg->twist.angular.z);
     }
     else
     {
       std::lock_guard<std::mutex> guard(twist_mutex_);
-      current_twist_ = *msg.get();
+      // current_twist_ = *msg.get();
+      current_twist_ = msg->twist;
     }
     // ROS_INFO("cmd received:%f, %f", msg->linear.x, msg->angular.z);
   }

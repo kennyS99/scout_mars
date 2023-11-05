@@ -16,7 +16,7 @@
 #include <nav_msgs/Odometry.h>
 // #include <tf/transform_broadcaster.h>
 #include <tf2_ros/transform_broadcaster.h>
-
+#include <geometry_msgs/TwistStamped.h>
 #include "scout_msgs/ScoutLightCmd.h"
 #include "ugv_sdk/mobile_robot/scout_robot.hpp"
 #include <mutex>
@@ -68,7 +68,7 @@ private:
     ros::Time last_time_;
     ros::Time current_time_;
 
-    void TwistCmdCallback(const geometry_msgs::Twist::ConstPtr &msg);
+    void TwistCmdCallback(const geometry_msgs::TwistStamped::ConstPtr &msg);
     void LightCmdCallback(const scout_msgs::ScoutLightCmd::ConstPtr &msg);
     void PublishOdometryToROS(double linear, double angular, double dt);
 };

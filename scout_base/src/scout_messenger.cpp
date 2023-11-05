@@ -31,7 +31,7 @@ namespace westonrobot
     BMS_status_publisher_ = nh_->advertise<scout_msgs::ScoutBmsStatus>("/BMS_status", 10);
 
     // cmd subscriber
-    motion_cmd_subscriber_ = nh_->subscribe<geometry_msgs::Twist>(
+    motion_cmd_subscriber_ = nh_->subscribe<geometry_msgs::TwistStamped>(
         "/cmd_vel", 5, &ScoutROSMessenger::TwistCmdCallback, this);
     light_cmd_subscriber_ = nh_->subscribe<scout_msgs::ScoutLightCmd>(
         "/scout_light_control", 5, &ScoutROSMessenger::LightCmdCallback, this);

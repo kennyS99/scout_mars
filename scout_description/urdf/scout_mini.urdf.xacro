@@ -93,7 +93,7 @@
     <!-- Joint connecting RPLIDAR to a part of the robot, e.g., base_link -->
     <joint name="ousterS1_joint" type="fixed">
         <parent link="Aluminum_stand"/>
-        <child link="ousterS1"/>
+        <child link="os_sensor"/>
         <origin xyz="-0.0254  0.0  0.215" rpy="0 0 0"/> <!-- Change this to adjust the position -->
     </joint>
 
